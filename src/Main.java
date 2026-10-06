@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+
 public class Main {
 
     // Метод для разделения задач:
@@ -20,54 +22,58 @@ public class Main {
 
     // Метод для задачи № 2
 
-    public static void checkOsDeviceCurrentYear(int clientOs, int clientDeviceYear) {
-        if (clientOs == 1 && clientDeviceYear <= 2015) {
-            System.out.println("Установите облегченную версию приложения для Android по ссылке");
-        } else if (clientOs == 1 && clientDeviceYear > 2015) {
-            System.out.println("Установите версию приложения для Android по ссылке");
-        } else if (clientOs == 0 && clientDeviceYear <= 2015) {
-            System.out.println("Установите облегченную версию приложения для iOS по ссылке");
-        } else if (clientOs == 0 && clientDeviceYear > 2015) {
-            System.out.println("Установите версию приложения для iOS по ссылке");
-        } else {
-            System.out.println("Ошибка скачивания");
-        }
-        System.out.println();
-    }
+        public static void checkOsDeviceCurrentYear(int clientOs, int clientDeviceYear) {
 
-    // Метод для задачи № 3
+            int currentYear = LocalDate.now().getYear();
 
-    public static int deliveryTimeCard(int deliveryDistance) {
-        if (deliveryDistance <= 20) {
-            return 0;
-        } else if (deliveryDistance <= 60) {
-            return 1;
-        } else if (deliveryDistance <= 100) {
-            return 2;
-        } else {
-            return 3;
+            String osName;
+            if (clientOs == 0) {
+                osName = "iOS";
+            } else if (clientOs == 1) {
+                osName = "Android";
+            } else {
+                System.out.println("Ошибка скачивания");
+                return;
+            }
+
+            if (clientDeviceYear < currentYear) {
+                System.out.println("Установите облегченную версию приложения для " + osName + " по ссылке");
+            } else {
+                System.out.println("Установите версию приложения для " + osName + " по ссылке");
+            }
         }
 
-    }
+        // Метод для задачи № 3
 
-    public static void main(String[] args) {
+        public static int deliveryTimeCard(int deliveryDistance) {
+            if (deliveryDistance <= 20) {
+                return 0;
+            } else if (deliveryDistance <= 60) {
+                return 1;
+            } else if (deliveryDistance <= 100) {
+                return 2;
+            } else {
+                return 3;
+            }
 
-        taskSeparrator(1);
-        int year = 2039;
-        checkLeapYear(year);
+        }
 
-        taskSeparrator(2);
-        int clientOs = 1;
-        int clientDeviceYear = 2014;
-        checkOsDeviceCurrentYear(clientOs, clientDeviceYear);
+        public static void main(String[] args) {
 
-        taskSeparrator(3);
-        int deliveryDistance = 9999999;
-        int deliveryTime = deliveryTimeCard(deliveryDistance);
-        if (deliveryTime == 3) {
-            System.out.println("Доставка на данное расстояние невозможна");
-        } else {
-            System.out.println("Потребуется " + deliveryTime + " дня для доставки карты на дом");
+            taskSeparrator(1);
+            int year = 2039;
+            checkLeapYear(year);
+
+            taskSeparrator(2);
+            checkOsDeviceCurrentYear(1, 2020);
+
+            taskSeparrator(3);
+            int deliveryDistance = 9999999;
+            int deliveryTime = deliveryTimeCard(deliveryDistance);
+            if (deliveryTime == 3) {
+                System.out.println("Доставка на данное расстояние невозможна");
+            } else {
+                System.out.println("Потребуется " + deliveryTime + " дня для доставки карты на дом");
+            }
         }
     }
-}

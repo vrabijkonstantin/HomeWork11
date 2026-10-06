@@ -45,7 +45,7 @@ public class Main {
 
         // Метод для задачи № 3
 
-        public static int deliveryTimeCard(int deliveryDistance) {
+        public static int calculateDeliveryTimeForCard(int deliveryDistance) {
             if (deliveryDistance <= 20) {
                 return 0;
             } else if (deliveryDistance <= 60) {
@@ -69,7 +69,7 @@ public class Main {
 
             taskSeparrator(3);
             int deliveryDistance = 9999999;
-            int deliveryTime = deliveryTimeCard(deliveryDistance);
+            int deliveryTime = calculateDeliveryTimeForCard(deliveryDistance);
             if (deliveryTime == 3) {
                 System.out.println("Доставка на данное расстояние невозможна");
             } else {
